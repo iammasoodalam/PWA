@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="date-created" content="12-04-2023">
+  <meta name="theme-color" content="#ccc">
+  <meta name="description" content="A autobiography of Mohammad Masood Alam">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="shortcut icon" href="icons/icon.png" type="image/png">
+  <link rel="stylesheet" href="css/prism.css" data-noprefix />
+  <link rel="stylesheet" href="css/style.css">
+  <title>Simple PWA</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>An installable web app (PWA)</h1>
+    <h2>Steps to create PWA: </h2>
+    <ol>
+      <li>
+        <span><span class="code-text">index.html</span> should have content below: </span>
+        <ul>
+          <li>A meta tag defining viewport.</li>
+          <li>A meta tag defining theme-color.</li>
+          <li>A meta tag for description.</li>
+          <li>A link tag for manifest file.</li>
+          <li>A title tag for page title.</li>
+          <li>A script for adding service worker, or a script tag links to a script file</li>
+        </ul>
+      </li>
+      <li>Create a script for adding service worker inside the <span class="code-text">index.html</span> or in linked
+        script file.</li>
+      <li>Create some icons with different sizes, one is permissible but not advised.</li>
+      <li>Create a manifest file with and link with
+        <pre><code class="language-html">&lt;link rel="manifest" href="pathto/manifest.json" /&gt;</code></pre>
+        or
+        <pre><code class="language-html">&lt;link rel="manifest" href="pathto/manifest.webmanifest" /&gt;</code></pre>
+      </li>
+      <li><span class="code-text">manifest.json</span> file should contain the below keys in it:
+        <pre><code class="language-json">{
+  "name": "A Quick Random Blog",
+  "short_name": "AQRB",
+  "short_url": ".",
+  "start_url": "/",
+  "theme_color": "#ccc",
+  "display": "standalone",
+  "background_color": "#333",
+  "description": "A simple blogpost for creating Progressive Web Apps (PWA)",
+  "icons": [
+    {
+      "src": "icons/100.png",
+      "type": "image/png",
+      "sizes": "100x100",
+      "purpose": "any maskable"
+    },
+  ]
+}</code></pre>
+      </li>
+      <li>One of the object in <span class="code-text">"icons"</span> array in <span
+          class="code-text">manifest.json</span> file should have property
+        <pre><code class="language-json">"purpose": "maskable"</code></pre> in it.
+      </li>
+      <li>You should register a service worker in root of the project, like:
+        <pre><code class="language-javascript">navigator.serviceWorker.register(
+  "pathTo/sw.js", 
+  {
+    scope: "./" // setting its scope in the root
+  }
+)</code></pre>
+        You can put your code like requesting notification permission and more in <span class="code-text">sw.js</span>,
+        but in this documentation we
+        leave it empty.
+      </li>
+      <li>Your page content should not overflow.</li>
+      <li>If any error persist then check for the <span class="code-text">lighthouse</span> in the developer options of
+        the browser.</li>
+    </ol>
+  </div>
+  <script src="js/script.js" type="text/javascript"></script>
+  <script src="js/prism.js"></script>
+</body>
+
+</html>
